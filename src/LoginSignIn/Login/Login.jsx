@@ -109,7 +109,7 @@ const Login = () => {
                 </div>
               </div>
               <div className="form-control mt-6">
-                <div className="w-full text-center  py-2 rounded overflow-hidden bg-gradient-to-r from-indigo-500  to-pink-500 transition duration-300 ease-in-out ">
+                <div className="w-full text-center  py-2 rounded overflow-hidden bg-gradient-to-r from-[#E1AEFF]  to-[#FF78C4]  transition duration-300 ease-in-out ">
                   <input
                     type="submit"
                     className="w-full cursor-pointer font-bold text-2xl hover:translate-x-10 transition duration-300 ease-in-out text-white"

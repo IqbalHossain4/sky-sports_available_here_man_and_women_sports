@@ -141,12 +141,11 @@ const NavBar = () => {
                   <NavLink to={"/dashboard/admin"}>Dashboard</NavLink>
                 </li>
               )}
-              {!isInstructor ||
-                (!isAdmin && (
-                  <li>
-                    <NavLink to={"/dashboard/users"}>Dashboard</NavLink>
-                  </li>
-                ))}
+              {!isInstructor && !isAdmin && (
+                <li>
+                  <NavLink to={"/dashboard/users"}>Dashboard</NavLink>
+                </li>
+              )}
 
               <li onClick={handleLogOut} className="cursor-pointer mt-2">
                 LogOut

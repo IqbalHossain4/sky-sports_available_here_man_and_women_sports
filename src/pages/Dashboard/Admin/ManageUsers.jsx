@@ -1,11 +1,11 @@
-import React, { useState } from "react";
 import DashHeader from "../Header/DashHeader";
-import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+// import useUsers from "../../../Hook/useUsers";
 
 const ManageUsers = () => {
-  const userData = useLoaderData();
+  // const [users] = useUsers();
 
+  console.log(users);
   const handleRoleAdmin = (id) => {
     fetch(`http://localhost:5000/user/${id}`, {
       method: "PATCH",
@@ -65,7 +65,7 @@ const ManageUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {userData.map((user, index) => (
+            {/* {storeUser.map((user, index) => (
               <tr key={user._id}>
                 <th>{index + 1}</th>
                 <td>{user.name}</td>
@@ -96,7 +96,7 @@ const ManageUsers = () => {
                   </button>
                 </td>
               </tr>
-            ))}
+            ))} */}
           </tbody>
         </table>
       </div>

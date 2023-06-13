@@ -78,11 +78,7 @@ const router = createBrowserRouter([
       },
       {
         path: "updateClass/:id",
-        element: (
-          <PriveteInstructor>
-            <UpdateClass />
-          </PriveteInstructor>
-        ),
+        element: <UpdateClass />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/topclass/${params.id}`),
       },
@@ -110,7 +106,6 @@ const router = createBrowserRouter([
             <ManageUsers />
           </PriveteAdmine>
         ),
-        loader: () => fetch("http://localhost:5000/users"),
       },
       {
         path: "payment",
