@@ -6,11 +6,11 @@ import useAdmine from "../Hook/useAdmine";
 import Loader from "../Component/Loader/Loader";
 
 const PriveteAdmine = ({ children }) => {
-  const { user, isLoading } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   const [isAdmin, isAdmineLoading] = useAdmine();
   const location = useLocation();
 
-  if (isLoading || isAdmineLoading) {
+  if (loading || isAdmineLoading) {
     return <Loader></Loader>;
   }
   if (user && isAdmin) {

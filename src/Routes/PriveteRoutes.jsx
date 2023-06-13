@@ -5,9 +5,9 @@ import { AuthContext } from "../Context/AuthProvider";
 import Loader from "../Component/Loader/Loader";
 
 const PriveteRoutes = ({ children }) => {
-  const { user, isLoading } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   const location = useLocation();
-  if (isLoading) {
+  if (loading) {
     return <Loader></Loader>;
   }
   if (user) {

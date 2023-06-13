@@ -6,11 +6,11 @@ import { AuthContext } from "../Context/AuthProvider";
 import useInstructor from "../Hook/useInstructor";
 
 const PriveteInstructor = ({ children }) => {
-  const { user, isLoading } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   const [isInstructor, isInsLoading] = useInstructor();
   const location = useLocation();
 
-  if (isLoading || isInsLoading) {
+  if (loading || isInsLoading) {
     return <Loader></Loader>;
   }
   if (user && isInstructor) {

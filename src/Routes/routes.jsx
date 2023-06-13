@@ -55,7 +55,6 @@ const router = createBrowserRouter([
         <Dashboard />
       </PriveteRoutes>
     ),
-    errorElement: <ErrorPage />,
     children: [
       {
         path: "users",
@@ -79,7 +78,11 @@ const router = createBrowserRouter([
       },
       {
         path: "updateClass/:id",
-        element: <UpdateClass />,
+        element: (
+          <PriveteInstructor>
+            <UpdateClass />
+          </PriveteInstructor>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/topclass/${params.id}`),
       },
@@ -93,7 +96,11 @@ const router = createBrowserRouter([
       },
       {
         path: "manageclass",
-        element: <ManageClass />,
+        element: (
+          <PriveteAdmine>
+            <ManageClass />
+          </PriveteAdmine>
+        ),
         loader: () => fetch("http://localhost:5000/topclass"),
       },
       {

@@ -52,7 +52,7 @@ const NavBar = () => {
       </li>
     </>
   );
-
+  console.log(isAdmin, isInstructor);
   return (
     <>
       <div className="navbar max-w-screen-xl font-serif  bg-gradient-to-r from-[#E1AEFF]  to-[#FF78C4]  text-white px-6">
@@ -130,25 +130,23 @@ const NavBar = () => {
         >
           {user && (
             <ul>
-              {isInstructor.role == "instructor" ? (
+              {isInstructor && (
                 <li>
                   <NavLink to={"/dashboard/addclass"}>Dashboard</NavLink>
                 </li>
-              ) : (
-                <li>
-                  <NavLink to={"/dashboard/users"}>Dashboard</NavLink>
-                </li>
               )}
 
-              {isAdmin.role == "admin" ? (
+              {isAdmin && (
                 <li>
                   <NavLink to={"/dashboard/admin"}>Dashboard</NavLink>
                 </li>
-              ) : (
-                <li>
-                  <NavLink to={"/dashboard/users"}>Dashboard</NavLink>
-                </li>
               )}
+              {!isInstructor ||
+                (!isAdmin && (
+                  <li>
+                    <NavLink to={"/dashboard/users"}>Dashboard</NavLink>
+                  </li>
+                ))}
 
               <li onClick={handleLogOut} className="cursor-pointer mt-2">
                 LogOut
