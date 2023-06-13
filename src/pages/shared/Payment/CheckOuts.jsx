@@ -13,6 +13,15 @@ const CheckOuts = () => {
     if (card === null) {
       return;
     }
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card,
+    });
+    if (error) {
+      console.log("error");
+    } else {
+      console.log("object");
+    }
   };
   return (
     <div>
