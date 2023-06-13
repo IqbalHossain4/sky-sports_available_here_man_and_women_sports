@@ -15,6 +15,7 @@ body {
 
 .my-custom-bg-class {
   background-image: url(./assets/wave.svg);
+  background-repeat: no-repeat;
 }
 
 :root {

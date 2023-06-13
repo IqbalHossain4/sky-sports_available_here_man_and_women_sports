@@ -1,13 +1,12 @@
 import DashHeader from "../Header/DashHeader";
 import Swal from "sweetalert2";
-// import useUsers from "../../../Hook/useUsers";
+import { useLoaderData } from "react-router-dom";
 
 const ManageUsers = () => {
-  // const [users] = useUsers();
+  const userData = useLoaderData();
 
-  console.log(users);
   const handleRoleAdmin = (id) => {
-    fetch(`http://localhost:5000/user/${id}`, {
+    fetch(`http://localhost:5000/users/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -65,7 +64,7 @@ const ManageUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {/* {storeUser.map((user, index) => (
+            {userData.map((user, index) => (
               <tr key={user._id}>
                 <th>{index + 1}</th>
                 <td>{user.name}</td>
@@ -73,10 +72,10 @@ const ManageUsers = () => {
                 <td>
                   <button
                     className={`btn font-serif  w-[120px] rounded-md ${
-                      user.role == "admin"
+                      user.role === "admin"
                         ? "bg-green-400"
                         : "bg-black text-white"
-                    } ${user.role == "instructor" && "bg-amber-400"}`}
+                    } ${user.role === "instructor" && "bg-amber-400"}`}
                   >
                     {user.role ? user.role : "Student"}
                   </button>
@@ -96,7 +95,7 @@ const ManageUsers = () => {
                   </button>
                 </td>
               </tr>
-            ))} */}
+            ))}
           </tbody>
         </table>
       </div>

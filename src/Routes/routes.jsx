@@ -106,6 +106,7 @@ const router = createBrowserRouter([
             <ManageUsers />
           </PriveteAdmine>
         ),
+        loader: () => fetch("http://localhost:5000/alluser"),
       },
       {
         path: "payment",
