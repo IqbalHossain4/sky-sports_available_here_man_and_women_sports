@@ -17,6 +17,8 @@ import ManageClass from "../pages/Dashboard/Admin/ManageClass";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import Payment from "../pages/shared/Payment/Payment";
 import ErrorPage from "../Component/ErrorPage/ErrorPage";
+import PriveteInstructor from "./PriveteInstructor";
+import PriveteAdmine from "./PriveteAdmine";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -61,11 +63,19 @@ const router = createBrowserRouter([
       },
       {
         path: "addclass",
-        element: <Addclass />,
+        element: (
+          <PriveteInstructor>
+            <Addclass />
+          </PriveteInstructor>
+        ),
       },
       {
         path: "myclass",
-        element: <Myclass />,
+        element: (
+          <PriveteInstructor>
+            <Myclass />
+          </PriveteInstructor>
+        ),
       },
       {
         path: "updateClass/:id",
@@ -75,7 +85,11 @@ const router = createBrowserRouter([
       },
       {
         path: "admin",
-        element: <Admine />,
+        element: (
+          <PriveteAdmine>
+            <Admine />
+          </PriveteAdmine>
+        ),
       },
       {
         path: "manageclass",
@@ -84,7 +98,11 @@ const router = createBrowserRouter([
       },
       {
         path: "manageuser",
-        element: <ManageUsers />,
+        element: (
+          <PriveteAdmine>
+            <ManageUsers />
+          </PriveteAdmine>
+        ),
         loader: () => fetch("http://localhost:5000/users"),
       },
       {

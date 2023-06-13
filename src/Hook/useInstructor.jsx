@@ -7,15 +7,15 @@ const useInstructor = () => {
   const { user } = useContext(AuthContext);
   const [axiosSecure] = useAxiosSecures();
 
-  const { data: isInstructor, isLoading: isAdminLoading } = useQuery({
+  const { data: isInstructor, isLoading: isInsLoading } = useQuery({
     queryKey: ["isInstructor", user?.email],
+
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/instructor/${user?.email}`);
       return res.data.instructor;
     },
   });
-
-  return [isInstructor, isAdminLoading];
+  return [isInstructor, isInsLoading];
 };
 
 export default useInstructor;

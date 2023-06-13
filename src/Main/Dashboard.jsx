@@ -1,9 +1,13 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
+import useAdmine from "../Hook/useAdmine";
+import useInstructor from "../Hook/useInstructor";
 const Dashboard = () => {
-  const isInstructor = false;
-  const isAdmin = true;
+  // const isInstructor = false;
+  // const isAdmin = true;
+  const [isInstructor] = useInstructor();
+  const [isAdmin] = useAdmine();
   return (
     <div className="drawer font-serif ">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />

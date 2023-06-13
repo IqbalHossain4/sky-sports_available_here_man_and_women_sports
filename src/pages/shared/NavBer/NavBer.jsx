@@ -4,17 +4,18 @@ import { NavLink } from "react-router-dom";
 import logo from "../../../assets/sports-day.png";
 import { AuthContext } from "../../../Context/AuthProvider";
 import useCourse from "../../../Hook/useCourse";
-// import useInstructor from "../../../Hook/useInstructor";
+import useInstructor from "../../../Hook/useInstructor";
+import useAdmine from "../../../Hook/useAdmine";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [cart] = useCourse();
   const [handleProfile, setHandleProfile] = useState(true);
 
-  // const [isAdmin]=useAdmine()
-  // const [isInstructor]=useInstructor()
-  const isInstructor = false;
-  const isAdmin = true;
+  const [isAdmin] = useAdmine();
+  const [isInstructor] = useInstructor();
+  // const isInstructor = false;
+  // const isAdmin = true;
 
   const handleLogOut = () => {
     logOut()
@@ -129,11 +130,17 @@ const NavBar = () => {
         >
           {user && (
             <ul>
-              {isInstructor ? (
+              {isInstructor.role == "instructor" ? (
                 <li>
                   <NavLink to={"/dashboard/addclass"}>Dashboard</NavLink>
                 </li>
-              ) : isAdmin ? (
+              ) : (
+                <li>
+                  <NavLink to={"/dashboard/users"}>Dashboard</NavLink>
+                </li>
+              )}
+
+              {isAdmin.role == "admin" ? (
                 <li>
                   <NavLink to={"/dashboard/admin"}>Dashboard</NavLink>
                 </li>
@@ -142,6 +149,7 @@ const NavBar = () => {
                   <NavLink to={"/dashboard/users"}>Dashboard</NavLink>
                 </li>
               )}
+
               <li onClick={handleLogOut} className="cursor-pointer mt-2">
                 LogOut
               </li>
