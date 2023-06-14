@@ -10,13 +10,15 @@ const CheckOuts = ({ price }) => {
   const [axiosSecure] = useAxiosSecure();
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSercret] = useState("");
+  const [processing, setProcessing] = useState(false);
+  const [transactionId, setTransactionId] = useState("");
 
   useEffect(() => {
     axiosSecure.post("/create-payment", { price }).then((res) => {
       console.log(res.data.clientSecret);
       setClientSercret(res.data.clientSecret);
     });
-  }, [price, axiosSecure]);
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -37,7 +39,8 @@ const CheckOuts = ({ price }) => {
       setCardError(" ");
       console.log(paymentMethod);
     }
-    const { PaymentIntent, error: confirmError } =
+    setProcessing(true);
+    const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: card,
@@ -47,6 +50,16 @@ const CheckOuts = ({ price }) => {
           },
         },
       });
+    if (confirmError) {
+      console.log(confirmError);
+    }
+    console.log(paymentIntent);
+    setProcessing(false);
+    if (paymentIntent.status === "succeeded") {
+      setTransactionId(paymentMethod.id);
+      //todo next steps
+      // const transaction = paymentIntent.id;
+    }
   };
   return (
     <div>
@@ -70,12 +83,15 @@ const CheckOuts = ({ price }) => {
         <button
           className="btn btn-warning mt-8"
           type="submit"
-          disabled={!stripe || !clientSecret}
+          disabled={!stripe || !clientSecret || processing}
         >
           Pay
         </button>
       </form>
       {cardError && <p className="text-red-600">{cardError}</p>}
+      {transactionId && (
+        <p className="text-green-600">Transaction completed{transactionId}</p>
+      )}
     </div>
   );
 };
