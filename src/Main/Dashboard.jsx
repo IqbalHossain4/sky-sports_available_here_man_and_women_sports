@@ -58,9 +58,19 @@ const Dashboard = () => {
                   </li>
                 </>
               ) : (
-                <li>
-                  <NavLink to="/dashboard/users">Adedd Class</NavLink>
-                </li>
+                <>
+                  <li>
+                    <NavLink to="/dashboard/users">Adedd Class</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/dashboard/enrolled">Enrolled class</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/dashboard/paymenthis">
+                      Payment History
+                    </NavLink>
+                  </li>
+                </>
               )}
 
               <div className="divider lg:divider-horizontal"></div>
