@@ -7,12 +7,14 @@ const CheckOuts = ({ price }) => {
   const elements = useElements();
   const [axiosSecure] = useAxiosSecure();
   const [cardError, setCardError] = useState("");
+  const [clientSecret, setClientSercret] = useState("");
 
   useEffect(() => {
     axiosSecure.post("/create-payment", { price }).then((res) => {
       console.log(res.data.clientSecret);
+      setClientSercret(res.data.clientSecret);
     });
-  }, []);
+  }, [price, axiosSecure]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -56,7 +58,7 @@ const CheckOuts = ({ price }) => {
         <button
           className="btn btn-warning mt-8"
           type="submit"
-          disabled={!stripe}
+          disabled={!stripe || !clientSecret}
         >
           Pay
         </button>
