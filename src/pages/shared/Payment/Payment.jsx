@@ -7,11 +7,13 @@ import useCourse from "../../../Hook/useCourse";
 const stripePromise = loadStripe(import.meta.env.VITE_payment_gatway);
 const Payment = () => {
   const [cart] = useCourse();
+  const total = cart.reduce((sum, item) => sum + item.price, 0);
+  const price = parseFloat(total.toFixed(2));
   return (
     <div className="font-serif bg-white">
       <HeaderSection text="Payment"></HeaderSection>
       <Elements stripe={stripePromise}>
-        <CheckOuts></CheckOuts>
+        <CheckOuts price={price}></CheckOuts>
       </Elements>
     </div>
   );

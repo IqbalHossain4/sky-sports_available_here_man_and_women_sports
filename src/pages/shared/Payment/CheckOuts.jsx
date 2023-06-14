@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 
-const CheckOuts = () => {
+const CheckOuts = ({ price }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [cardError, setCardError] = useState("");
