@@ -44,7 +44,7 @@ const AllClass = ({ allclass }) => {
           if (data.insertedId) {
             refetch();
             Swal.fire({
-              position: "top-end",
+              position: "center",
               icon: "success",
               title: "You Select a Sports",
               showConfirmButton: false,

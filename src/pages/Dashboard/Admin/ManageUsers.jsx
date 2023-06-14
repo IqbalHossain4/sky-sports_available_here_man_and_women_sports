@@ -17,7 +17,7 @@ const ManageUsers = () => {
       .then((data) => {
         if (data.modifiedCount > 0) {
           Swal.fire({
-            position: "top-end",
+            position: "center",
             icon: "success",
             title: "Your work has been saved",
             showConfirmButton: false,
@@ -39,7 +39,7 @@ const ManageUsers = () => {
       .then((data) => {
         if (data.modifiedCount > 0) {
           Swal.fire({
-            position: "top-end",
+            position: "center",
             icon: "success",
             title: "Your work has been saved",
             showConfirmButton: false,

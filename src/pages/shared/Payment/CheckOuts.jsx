@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import useAxiosSecure from "../../../Hook/useAxiosSecures";
 import { AuthContext } from "../../../Context/AuthProvider";
-
+import Swal from "sweetalert2";
+import "./checkStyles.css";
 const CheckOuts = ({ price, cart }) => {
   const stripe = useStripe();
   const elements = useElements();
@@ -61,13 +62,27 @@ const CheckOuts = ({ price, cart }) => {
         email: user?.email,
         transactionId: paymentIntent.id,
         price,
+        date: new Date(),
         quantity: cart.length,
+        status: "pending",
+        classId: cart.map((item) => item.classId),
         itemsId: cart.map((item) => item._id),
         itemName: cart.map((item) =>
           item.sport_name ? item.sport_name : item.class_name
         ),
       };
-      axiosSecure.post("/payments").then((res) => res.data);
+      axiosSecure.post("/payments", payment).then((res) => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Payment SuccesFul",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
       // const transaction = paymentIntent.id;
     }
   };
