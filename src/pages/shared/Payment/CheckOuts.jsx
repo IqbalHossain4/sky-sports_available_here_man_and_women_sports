@@ -3,8 +3,8 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import useAxiosSecure from "../../../Hook/useAxiosSecures";
 import { AuthContext } from "../../../Context/AuthProvider";
 import Swal from "sweetalert2";
-import "./checkStyles.css";
-const CheckOuts = ({ price, cart }) => {
+
+const CheckOuts = ({ price, loadPrice }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useContext(AuthContext);
@@ -15,10 +15,12 @@ const CheckOuts = ({ price, cart }) => {
   const [transactionId, setTransactionId] = useState("");
 
   useEffect(() => {
-    axiosSecure.post("/create-payment", { price }).then((res) => {
-      console.log(res.data.clientSecret);
-      setClientSercret(res.data.clientSecret);
-    });
+    if (price > 0) {
+      axiosSecure.post("/create-payment", { price }).then((res) => {
+        console.log(res.data.clientSecret);
+        setClientSercret(res.data.clientSecret);
+      });
+    }
   }, []);
 
   const handleSubmit = async (event) => {
@@ -63,13 +65,12 @@ const CheckOuts = ({ price, cart }) => {
         transactionId: paymentIntent.id,
         price,
         date: new Date(),
-        quantity: cart.length,
         status: "pending",
-        classId: cart.map((item) => item.classId),
-        itemsId: cart.map((item) => item._id),
-        itemName: cart.map((item) =>
-          item.sport_name ? item.sport_name : item.class_name
-        ),
+        classId: loadPrice.classId,
+        itemsId: loadPrice._id,
+        itemName: loadPrice.sport_name
+          ? loadPrice.sport_name
+          : loadPrice.class_name,
       };
       axiosSecure.post("/payments", payment).then((res) => {
         console.log(res.data);
@@ -83,7 +84,15 @@ const CheckOuts = ({ price, cart }) => {
           });
         }
       });
-      // const transaction = paymentIntent.id;
+      fetch(`http://localhost:5000/selectCourse/${loadPrice._id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deleteCount > 0) {
+            console.log(data);
+          }
+        });
     }
   };
   return (

@@ -57,8 +57,8 @@ const AllUser = () => {
               <th>#</th>
               <th>Name:</th>
               <th>Email:</th>
-              <th>Pay:</th>
-              <th></th>
+              <th>Price</th>
+              <th>Buy</th>
               <th>Action:</th>
             </tr>
           </thead>
@@ -68,12 +68,14 @@ const AllUser = () => {
                 <th>{index + 1}</th>
                 <td>{user.class_name ? user.class_name : user.sport_name}</td>
                 <td>{user.email}</td>
+                <td>Price:{user.price}</td>
                 <td>
-                  <button className="btn hover:bg-blue-500 bg-black text-white">
-                    ${user.price ? user.price : 20}
-                  </button>
+                  <Link to={`/dashboard/payment/${user._id}`}>
+                    <button className="btn btn-warning hover:bg-blue-500 w-[60px]  text-white">
+                      Pay
+                    </button>
+                  </Link>
                 </td>
-                <td></td>
 
                 <td>
                   <button
@@ -87,24 +89,6 @@ const AllUser = () => {
             ))}
           </tbody>
         </table>
-        {cart.length !== 0 && (
-          <div className="mt-16">
-            <hr />
-            <div className="flex item-center justify-evenly  py-4">
-              <div className="text-2xl font-bold">
-                <h3>Total Price: ${total}</h3>
-              </div>
-              <div>
-                <Link to="/dashboard/payment">
-                  <button className="btn bg-blue-500 hover:bg-black hover:text-white">
-                    PayMent
-                  </button>
-                </Link>
-              </div>
-            </div>
-            <hr />
-          </div>
-        )}
       </div>
     </div>
   );
