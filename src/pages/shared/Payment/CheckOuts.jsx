@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import useAxiosSecure from "../../../Hook/useAxiosSecures";
+import { AuthContext } from "../../../Context/AuthProvider";
 
 const CheckOuts = ({ price }) => {
   const stripe = useStripe();
   const elements = useElements();
+  const { user } = useContext(AuthContext);
   const [axiosSecure] = useAxiosSecure();
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSercret] = useState("");
@@ -35,6 +37,16 @@ const CheckOuts = ({ price }) => {
       setCardError(" ");
       console.log(paymentMethod);
     }
+    const { PaymentIntent, error: confirmError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            email: user?.email || "unkwown ",
+            name: user?.displayName || "anonymous",
+          },
+        },
+      });
   };
   return (
     <div>
