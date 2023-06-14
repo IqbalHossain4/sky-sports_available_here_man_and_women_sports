@@ -3,7 +3,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import useAxiosSecure from "../../../Hook/useAxiosSecures";
 import { AuthContext } from "../../../Context/AuthProvider";
 
-const CheckOuts = ({ price }) => {
+const CheckOuts = ({ price, cart }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useContext(AuthContext);
@@ -29,7 +29,7 @@ const CheckOuts = ({ price }) => {
     if (card === null) {
       return;
     }
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    const { error } = await stripe.createPaymentMethod({
       type: "card",
       card,
     });
@@ -37,7 +37,6 @@ const CheckOuts = ({ price }) => {
       setCardError(error.message);
     } else {
       setCardError(" ");
-      console.log(paymentMethod);
     }
     setProcessing(true);
     const { paymentIntent, error: confirmError } =
@@ -56,8 +55,19 @@ const CheckOuts = ({ price }) => {
     console.log(paymentIntent);
     setProcessing(false);
     if (paymentIntent.status === "succeeded") {
-      setTransactionId(paymentMethod.id);
-      //todo next steps
+      setTransactionId(paymentIntent.id);
+      //Save payments info in the server
+      const payment = {
+        email: user?.email,
+        transactionId: paymentIntent.id,
+        price,
+        quantity: cart.length,
+        itemsId: cart.map((item) => item._id),
+        itemName: cart.map((item) =>
+          item.sport_name ? item.sport_name : item.class_name
+        ),
+      };
+      axiosSecure.post("/payments").then((res) => res.data);
       // const transaction = paymentIntent.id;
     }
   };
