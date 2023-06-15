@@ -19,6 +19,9 @@ import Payment from "../pages/shared/Payment/Payment";
 import ErrorPage from "../Component/ErrorPage/ErrorPage";
 import PriveteInstructor from "./PriveteInstructor";
 import PriveteAdmine from "./PriveteAdmine";
+import Enrolled from "../pages/Dashboard/Users/Enrolled";
+import PaymentHistory from "../pages/Dashboard/Users/PaymentHistory";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -75,6 +78,14 @@ const router = createBrowserRouter([
             <Myclass />
           </PriveteInstructor>
         ),
+      },
+      {
+        path: "enrolled",
+        element: <Enrolled />,
+      },
+      {
+        path: "payhistory",
+        element: <PaymentHistory />,
       },
       {
         path: "updateClass/:id",
