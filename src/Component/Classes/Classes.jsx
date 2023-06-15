@@ -7,7 +7,7 @@ import Class from "./Class";
 const Classes = () => {
   const [topClass, setTopClass] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/topclass")
+    fetch("https://assignment-12-server-gamma.vercel.app/topclass")
       .then((res) => res.json())
       .then((data) => setTopClass(data));
   }, []);

@@ -32,6 +32,7 @@ const NewUser = () => {
   })
     .then((res) => res.json())
     .then((imgdata) => {
+      console.log(imgdata.data);
       setStoreImg(imgdata.data.display_url);
     });
   const handleSignUp = (e) => {
@@ -77,8 +78,12 @@ const NewUser = () => {
         const user = result.user;
         console.log(user);
         updateProfiles(name, photo).then(() => {
-          const saveUser = { name: name, photo: photo, email: email };
-          fetch("http://localhost:5000/users", {
+          const saveUser = {
+            name: name,
+            photo: photo,
+            email: email.toLowerCase(),
+          };
+          fetch("https://assignment-12-server-gamma.vercel.app/users", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -107,7 +112,7 @@ const NewUser = () => {
         name: loggedInUser.displayName,
         email: loggedInUser.email,
       };
-      fetch("http://localhost:5000/users", {
+      fetch("https://assignment-12-server-gamma.vercel.app/users", {
         method: "POST",
         headers: {
           "content-type": "application/json",

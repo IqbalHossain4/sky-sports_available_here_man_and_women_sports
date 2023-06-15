@@ -32,7 +32,7 @@ const AllClass = ({ allclass }) => {
         price: parseFloat(price),
         email: user.email,
       };
-      fetch("http://localhost:5000/selectCourse", {
+      fetch("https://assignment-12-server-gamma.vercel.app/selectCourse", {
         method: "POST",
         headers: {
           "content-type": "application/json",

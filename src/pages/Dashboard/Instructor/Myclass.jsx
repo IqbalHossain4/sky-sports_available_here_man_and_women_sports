@@ -8,13 +8,15 @@ const Myclass = () => {
   const [myClasses, setMyClasses] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/topclass/email?email=${user.email}`)
+    fetch(
+      `https://assignment-12-server-gamma.vercel.app/topclass/email?email=${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => setMyClasses(data));
   }, []);
 
   return (
-    <div>
+    <div className="bg-white">
       <DashHeader text="My Class"></DashHeader>
       <table className="table mt-16 table-zebra w-full">
         {/* head */}
@@ -34,7 +36,7 @@ const Myclass = () => {
               <th>{index + 1}</th>
               <td>{user.class_name ? user.class_name : user.sport_name}</td>
               <td>{0}</td>
-              <td>No FeedBack</td>
+              <td>{user.feedBack ? user.feedBack : "No Feedback"}</td>
               <td>{user?.status === "approved" ? "approved" : "pending"}</td>
               <td>
                 <NavLink to={`/dashboard/updateClass/${user._id}`}>

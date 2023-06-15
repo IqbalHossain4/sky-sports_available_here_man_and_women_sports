@@ -13,7 +13,7 @@ const Allsports = () => {
   const [sports, setSports] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/allsports")
+    fetch("https://assignment-12-server-gamma.vercel.app/allsports")
       .then((res) => res.json())
       .then((data) => setSports(data));
   }, []);

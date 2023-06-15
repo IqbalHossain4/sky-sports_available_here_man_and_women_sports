@@ -84,7 +84,8 @@ const CheckOuts = ({ price, loadPrice }) => {
           });
         }
       });
-      fetch(`http://localhost:5000/selectCourse/${loadPrice._id}`, {
+      
+      fetch(`https://assignment-12-server-gamma.vercel.app/selectCourse/${loadPrice._id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

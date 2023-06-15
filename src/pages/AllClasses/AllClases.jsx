@@ -8,7 +8,7 @@ const AllClases = () => {
   const [allclass, setAllclass] = useState([]);
   const { user } = useContext(AuthContext);
   useEffect(() => {
-    fetch("http://localhost:5000/topclass")
+    fetch("https://assignment-12-server-gamma.vercel.app/topclass")
       .then((res) => res.json())
       .then((data) => setAllclass(data));
   }, []);

@@ -6,7 +6,7 @@ const ManageUsers = () => {
   const userData = useLoaderData();
 
   const handleRoleAdmin = (id) => {
-    fetch(`http://localhost:5000/users/${id}`, {
+    fetch(`https://assignment-12-server-gamma.vercel.app/users/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -28,7 +28,7 @@ const ManageUsers = () => {
   };
 
   const handleRoleInstructor = (id) => {
-    fetch(`http://localhost:5000/user/${id}`, {
+    fetch(`https://assignment-12-server-gamma.vercel.app/users/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -48,6 +48,7 @@ const ManageUsers = () => {
         }
       });
   };
+
   return (
     <div className="font-serif bg-white">
       <DashHeader text="Manage Users"></DashHeader>

@@ -7,7 +7,7 @@ import Instuctorr from "./Instuctorr";
 const Instructorss = () => {
   const [instructors, setInstructors] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/instructors")
+    fetch("https://assignment-12-server-gamma.vercel.app/instructors")
       .then((res) => res.json())
       .then((data) => setInstructors(data));
   }, []);

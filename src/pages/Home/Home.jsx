@@ -4,6 +4,7 @@ import Banner from "../../Component/Banner/Banner";
 import Classes from "../../Component/Classes/Classes";
 import Instructors from "../../Component/Instructors/Instructors";
 
+
 const titleHook = (title) => {
   useEffect(() => {
     document.title = `Sky-${title}`;
@@ -12,8 +13,11 @@ const titleHook = (title) => {
 
 const Home = () => {
   titleHook("Learning Never Ends");
+
+
   return (
     <div className="mt-8">
+     
       <Banner />
       <Classes />
       <Instructors />

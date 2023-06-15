@@ -17,7 +17,7 @@ const ManageClass = () => {
   };
 
   const handleChangeStatus = (id) => {
-    fetch(`http://localhost:5000/topclass/${id}`, {
+    fetch(`https://assignment-12-server-gamma.vercel.app/topclass/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -48,7 +48,7 @@ const ManageClass = () => {
       confirmButtonText: "Yes, denied it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/topclass/${id}`, {
+        fetch(`https://assignment-12-server-gamma.vercel.app/topclass/${id}`, {
           method: "PATCH",
           headers: {
             "content-type": "application/json",

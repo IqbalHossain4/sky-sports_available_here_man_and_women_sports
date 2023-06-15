@@ -12,12 +12,14 @@ const AllUser = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/selectCourse?email=${user?.email}`)
+    fetch(
+      `https://assignment-12-server-gamma.vercel.app/selectCourse?email=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => setCarts(data));
   }, [cart]);
 
-  let total = cart.reduce((sum, item) => item?.price + sum, 0);
+  // let total = cart.reduce((sum, item) => item?.price + sum, 0);
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -29,9 +31,12 @@ const AllUser = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/selectCourse/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://assignment-12-server-gamma.vercel.app/selectCourse/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
@@ -68,7 +73,7 @@ const AllUser = () => {
                 <th>{index + 1}</th>
                 <td>{user.class_name ? user.class_name : user.sport_name}</td>
                 <td>{user.email}</td>
-                <td>Price:{user.price}</td>
+                <td>${user.price ? user.price : "Free"}</td>
                 <td>
                   <Link to={`/dashboard/payment/${user._id}`}>
                     <button className="btn btn-warning hover:bg-blue-500 w-[60px]  text-white">

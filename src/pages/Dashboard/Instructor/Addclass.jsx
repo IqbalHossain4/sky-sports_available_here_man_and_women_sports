@@ -48,7 +48,7 @@ const Addclass = () => {
       status,
     };
 
-    fetch("http://localhost:5000/topclass", {
+    fetch("https://assignment-12-server-gamma.vercel.app/topclass", {
       method: "POST",
       headers: {
         "content-type": "application/json",

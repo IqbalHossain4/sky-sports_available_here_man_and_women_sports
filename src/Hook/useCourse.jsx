@@ -7,7 +7,7 @@ const useCourse = () => {
     queryKey: ["cart", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/selectCourse?email=${user?.email}`
+        `https://assignment-12-server-gamma.vercel.app/selectCourse?email=${user?.email}`
       );
       return res.json();
     },

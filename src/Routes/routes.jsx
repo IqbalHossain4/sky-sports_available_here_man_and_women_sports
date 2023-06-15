@@ -91,7 +91,7 @@ const router = createBrowserRouter([
         path: "updateClass/:id",
         element: <UpdateClass />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/topclass/${params.id}`),
+          fetch(`https://assignment-12-server-gamma.vercel.app/topclass/${params.id}`),
       },
       {
         path: "admin",
@@ -108,7 +108,7 @@ const router = createBrowserRouter([
             <ManageClass />
           </PriveteAdmine>
         ),
-        loader: () => fetch("http://localhost:5000/topclass"),
+        loader: () => fetch("https://assignment-12-server-gamma.vercel.app/topclass"),
       },
       {
         path: "manageuser",
@@ -117,13 +117,13 @@ const router = createBrowserRouter([
             <ManageUsers />
           </PriveteAdmine>
         ),
-        loader: () => fetch("http://localhost:5000/alluser"),
+        loader: () => fetch("https://assignment-12-server-gamma.vercel.app/alluser"),
       },
       {
         path: "payment/:id",
         element: <Payment />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/selectCourse/${params.id}`),
+          fetch(`https://assignment-12-server-gamma.vercel.app/selectCourse/${params.id}`),
       },
     ],
   },

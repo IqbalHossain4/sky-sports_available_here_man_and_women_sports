@@ -6,13 +6,15 @@ const PaymentHistory = () => {
   const [paymentHistry, setPaymentHistry] = useState([]);
   const { user } = useContext(AuthContext);
   useEffect(() => {
-    fetch(`http://localhost:5000/allpayment?email=${user.email}`)
+    fetch(
+      `https://assignment-12-server-gamma.vercel.app/allpayment?email=${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => setPaymentHistry(data));
   }, []);
   return (
     <div className="w-full bg-white  font-serif">
-      <DashHeader text="Paym"></DashHeader>
+      <DashHeader text="Payment History"></DashHeader>
 
       <div className="overflow-x-auto">
         <table className="table table-zebra w-full">

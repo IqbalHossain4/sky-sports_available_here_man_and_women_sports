@@ -39,13 +39,16 @@ const UpdateClass = () => {
       price: parseFloat(price),
       picture,
     };
-    fetch(`http://localhost:5000/topclass/${data._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(classes),
-    })
+    fetch(
+      `https://assignment-12-server-gamma.vercel.app/topclass/${data._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(classes),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

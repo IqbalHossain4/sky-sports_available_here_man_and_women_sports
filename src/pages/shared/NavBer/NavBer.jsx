@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart,FaHome,} from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import logo from "../../../assets/sports-day.png";
 import { AuthContext } from "../../../Context/AuthProvider";
@@ -28,10 +28,16 @@ const NavBar = () => {
   const navOptions = (
     <>
       <li>
+      <span>
+      <FaHome/>
         <NavLink to="/">Home</NavLink>
+      </span>
       </li>
       <li>
+      <span>
+     
         <NavLink to="/instructor">Instructors</NavLink>
+        </span>
       </li>
       <li>
         <NavLink to="/classes">Classes</NavLink>

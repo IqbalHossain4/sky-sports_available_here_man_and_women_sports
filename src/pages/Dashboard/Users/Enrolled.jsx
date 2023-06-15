@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Context/AuthProvider";
 import DashHeader from "../Header/DashHeader";
-import { Link } from "react-router-dom";
 
 const Enrolled = () => {
   const [enrolled, setEnrolled] = useState([]);
   const { user } = useContext(AuthContext);
   useEffect(() => {
-    fetch(`http://localhost:5000/allpayment?email=${user.email}`)
+    fetch(
+      `https://assignment-12-server-gamma.vercel.app/allpayment?email=${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => setEnrolled(data));
   }, []);

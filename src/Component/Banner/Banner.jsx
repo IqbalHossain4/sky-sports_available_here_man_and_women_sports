@@ -3,6 +3,7 @@ import img1 from "../../assets/1 (1).jpg";
 import img2 from "../../assets/1 (2).jpg";
 import img3 from "../../assets/1 (3).jpg";
 import img4 from "../../assets/1 (4).jpg";
+
 const Banner = () => {
   const [isShowMore, setIsShowMore] = useState(false);
 
